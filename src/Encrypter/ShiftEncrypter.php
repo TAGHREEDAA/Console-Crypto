@@ -8,11 +8,40 @@ class ShiftEncrypter implements Encrypter
 {
     public function encrypt($word)
     {
-        // TODO: Implement encrypt() method.
+        $response = $this->shiftSentenceBy($word, 3);
+        return $response;
     }
 
     public function decrypt($word)
     {
-        // TODO: Implement decrypt() method.
+        $response = $this->shiftSentenceBy($word, 23);
+        return $response;
+    }
+    private function shiftSentenceBy($word, $step)
+    {
+        $result = '';
+        $AAscii = ord('A'); // 65
+        $aAscii = ord('a'); // 97
+
+        for ($i = 0; $i < strlen($word); $i++) {
+            $currentLetter = $word[$i];
+
+            if ($currentLetter === ' ') {
+                $result .= $currentLetter;
+            }
+            elseif (ctype_upper($currentLetter)) {
+                $result .= chr((ord($currentLetter) + $step - $AAscii) % 26 + $AAscii);
+            }
+            else {
+                $result .= chr((ord($currentLetter) + $step - $aAscii) % 26 + $aAscii);
+            }
+        }
+
+        return [
+            'success' => [
+                'data' => $result,
+                'code' => 200
+            ]
+        ];
     }
 }
