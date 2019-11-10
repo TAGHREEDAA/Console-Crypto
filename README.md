@@ -73,6 +73,18 @@ cd /Console-Crypto
 ./crypto crypto "Khoor Zruog" reverse decrypt
 ```
 
+
+#### Reverse Encryption Algorithm
+##### Encryption
+
+```bash
+cd /Console-Crypto
+
+./crypto crypto "Hello World" matrix encrypt
+```
+
+
+
 ## Tests
 
 ```bash
